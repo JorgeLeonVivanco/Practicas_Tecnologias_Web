@@ -10,7 +10,7 @@ echo"<title>UnapaginallenadescriptsPHP</title>";
 ?>
 </head>
 <body>
-<scriptlanguage="php">←(3)
+<scriptlanguage="php">
 echo"<h1>BUENODIASATODOS</h1>";
 </script>
 <?php

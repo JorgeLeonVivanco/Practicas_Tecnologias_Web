@@ -6,7 +6,7 @@ $variable1="PHP 5";
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php
-echo "<title>Una página que contiene muchas inclusiones $variable1</title>";
+echo "<title>Una página que contiene muchas inclusiones$variable1</title>";
 ?>
 </head>
 <body>

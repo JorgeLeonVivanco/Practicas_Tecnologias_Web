@@ -92,5 +92,29 @@
     echo "El primer número entero aleatorio múltiplo de $numero_dado es: $numero_aleatorio";
     ?>
 
+    <h2>Ejercicio 3.1: Utiliza un ciclo do-while para encontrar el primer número entero obtenido aleatoriamente,
+    pero que además sea múltiplo de un número dado.
+    El número dado se debe obtener vía GET.</h2>
+
+    <?php
+    // Obtener el número dado a través de la solicitud GET
+    if (isset($_GET['numero'])) {
+        $numero_dado = (int)$_GET['numero'];
+    } else {
+        echo "Por favor, proporciona un número dado a través de la solicitud GET.";
+        exit;
+    }
+    $encontrado = false;
+    $numero_aleatorio = 0;
+    do {
+        $numero_aleatorio = rand(1, 1000); // Puedes ajustar el rango según tus necesidades
+        
+        if ($numero_aleatorio % $numero_dado == 0) {
+            $encontrado = true;
+        }
+    } while (!$encontrado);
+    echo "El primer número entero aleatorio múltiplo de $numero_dado es: $numero_aleatorio";
+    ?>
+
 </body>
 </html>

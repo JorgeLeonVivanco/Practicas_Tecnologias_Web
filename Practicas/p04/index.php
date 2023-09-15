@@ -5,6 +5,7 @@
     <title>Práctica 4</title>
 </head>
 <body>
+
     <h2>Ejercicio 1: Escribir programa para comprobar si un número es un múltiplo de 5 y 7.</h2>
     <?php
         if(isset($_GET['numero']))
@@ -21,7 +22,7 @@
         }
     ?>
 
-<h2>Ejercicio 2:Crea un programa para la generación repetitiva de 3 números aleatorios hasta obtener una
+    <h2>Ejercicio 2:Crea un programa para la generación repetitiva de 3 números aleatorios hasta obtener una
     secuencia compuesta por: impar,par,impar.</h2>
     <?php
     function generarNumeroAleatorio() 
@@ -62,6 +63,33 @@
     }
     echo "</table>";
     echo "$numerosGenerados números generados en $iteraciones iteraciones";
+    ?>
+
+    <h2>Ejercicio 3: Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente,
+        pero que además sea múltiplo de un número dado. El número dado se debe obtener vía GET.</h2>
+    <?php
+    if (isset($_GET['numero'])) 
+    {
+        $numero_dado = (int)$_GET['numero'];
+    } else 
+    {
+        echo "Por favor, proporciona un número dado a través de la solicitud GET.";
+        exit;
+    }
+
+    $encontrado = false;
+    $numero_aleatorio = 0;
+
+    while (!$encontrado) 
+    {
+        $numero_aleatorio = rand(1, 1000); // Puedes ajustar el rango según tus necesidades
+        
+        if ($numero_aleatorio % $numero_dado == 0) 
+        {
+            $encontrado = true;
+        }
+    }
+    echo "El primer número entero aleatorio múltiplo de $numero_dado es: $numero_aleatorio";
     ?>
 
 </body>

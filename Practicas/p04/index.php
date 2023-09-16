@@ -175,5 +175,45 @@
     </form>
 
 
+    <h2>Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de
+    una ciudad.Finalmente crea un formulario simple donde puedas consultar la información: Por matricula de auto y 
+    todos los autos registrados.</h2>
+
+    <?php
+    include 'funciones.php';
+    $parqueVehicular = crearParqueVehicular();
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $matriculaConsultada = $_POST["matricula"];
+        $infoAuto = consultarPorMatricula($parqueVehicular, $matriculaConsultada);
+        if (is_array($infoAuto)) {
+            echo "<h2>Información del Auto (Matrícula: $matriculaConsultada)</h2>";
+            echo "<pre>";
+            print_r($infoAuto);
+            echo "</pre>";
+        } else {
+            echo "<p>$infoAuto</p>";
+        }
+    }
+    ?>
+
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <label for="matricula">Matrícula del Auto:</label>
+        <input type="text" id="matricula" name="matricula" required>
+        <input type="submit" value="Consultar">
+    </form>
+    
+    <h2>Información de Todos los Autos</h2>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
+        <input type="hidden" name="mostrar" value="1">
+        <input type="submit" value="Mostrar Parque Vehicular">
+    </form>
+    
+    <?php
+    if (isset($_GET["mostrar"]) && $_GET["mostrar"] == 1) {
+        mostrarParqueVehicular($parqueVehicular);
+    }
+    ?>
+
 </body>
 </html>

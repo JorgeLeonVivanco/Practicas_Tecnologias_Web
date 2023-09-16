@@ -143,5 +143,37 @@
     echo "</table>";
     ?>
 
+<p><h2>IMPORTANTE: Los siguientes ejercicios deben implementarse en formularios simples de HTML5
+(solicitud) y como respuesta devolver un XHTML generado por PHP.</h2></p>
+    <h2>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de
+    sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje de
+    bienvenida apropiado.En caso contrario, deberá devolverse otro mensaje indicando el error.</h2>
+
+    <?php
+    // Incluir el archivo de funciones
+    include 'funciones.php';
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $edad = $_POST["edad"];
+        $sexo = $_POST["sexo"];
+
+        $mensaje = validarEdadSexo($edad, $sexo);
+        echo "<p>$mensaje</p>";
+    }
+    ?>
+
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required><br><br>
+        
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" required>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+        </select><br><br>
+        
+        <input type="submit" value="Verificar">
+    </form>
+
+
 </body>
 </html>

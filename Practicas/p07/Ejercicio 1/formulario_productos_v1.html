@@ -1,0 +1,113 @@
+<!DOCTYPE html >
+<html>
+
+  <head>
+    <meta charset="utf-8" >
+    <title>Registro De Productos</title>
+    <style type="text/css">
+      ol, ul { 
+      list-style-type: none;
+      }
+    </style>
+  </head>
+  <script>
+    function validateForm() {
+        var nombre = document.getElementById("nombre").value;
+        var marca = document.getElementById("marca").value;
+        var modelo = document.getElementById("modelo").value;
+        var precio = document.getElementById("precio").value;
+        var detalles = document.getElementById("detalles").value;
+        var unidades = document.getElementById("unidades").value;
+        var urlImagen = document.getElementById("urlImagen").value;
+
+        // a. El nombre debe ser requerido y tener 100 caracteres o menos.
+        if (nombre === "" || nombre.length > 100) {
+            alert("El nombre es requerido y debe tener 100 caracteres o menos.");
+            return false;
+        }
+
+        // b. La marca debe ser requerida y seleccionarse de una lista de opciones.
+        if (marca === "") {
+            alert("La marca es requerida.");
+            return false;
+        }
+
+        // c. El modelo debe ser requerido, texto alfanumérico y tener 25 caracteres o menos.
+        if (modelo === "" || !/^[a-zA-Z0-9 ]{1,25}$/.test(modelo)) {
+            alert("El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.");
+            return false;
+        }
+
+        // d. El precio debe ser requerido y debe ser mayor a 99.99
+        if (precio === "" || parseFloat(precio) <= 99.99) {
+            alert("El precio es requerido y debe ser mayor a 99.99.");
+            return false;
+        }
+
+        // e. Los detalles deben ser opcionales y, de usarse, deben tener 250 caracteres o menos.
+        if (detalles.length > 250) {
+            alert("Los detalles deben tener 250 caracteres o menos.");
+            return false;
+        }
+
+        // f. Las unidades deben ser requeridas y el número registrado debe ser mayor o igual a 0.
+        if (unidades === "" || parseInt(unidades) < 0) {
+            alert("Las unidades son requeridas y deben ser mayores o iguales a 0.");
+            return false;
+        }
+
+        // g. La ruta de la imagen debe ser opcional, pero en caso de no registrarse se debe usar la ruta de una imagen por defecto.
+        if (urlImagen === "") {
+            // Set default image URL
+            document.getElementById("urlImagen").value = "cat.png";
+        }
+
+        return true; // Allow form submission
+    }
+</script>
+
+  <body>
+    <h1>Registro de Productos&ldquo;Almacenes BUAP&rdquo;</h1>
+
+    <form id="formulario" action="http://localhost:100/tecnologiasweb/practicas/p06-base/set_producto_v2.php" method="post">
+
+    <h2>Información de Productos</h2>
+
+      <fieldset>
+        <legend>Informacion</legend>
+
+        <ul>
+          <form action="http://localhost:100/tecnologiasweb/practicas/p06-base/set_producto_v2.php" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Solo 99 caracteres" required><br>
+    
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" placeholder="Solo 25 caracteres" required><br>
+    
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" placeholder="Solo 25 caracteres" required><br>
+    
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" step="0.01" required><br>
+    
+            <label for="detalles">Detalles:</label>
+            <textarea id="detalles" name="detalles" rows="4" cols="50" placeholder="Solo 250 caracteres"></textarea><br>
+    
+            <label for="unidades">Unidades:</label>
+            <input type="number" id="unidades" name="unidades" required min="0"><br>
+    
+            <label for="urlImagen">URL de la Imagen:</label>
+            <input type="url" id="urlImagen" name="urlImagen"><br>
+    
+        </ul>
+      </fieldset>
+
+      
+      <p>
+        <input type="submit" value="Registrar mis productos">
+        <input type="reset">
+      </p>
+
+    </form>
+  </body>
+</html>
